@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h1 class="mb-4">Список инцидентов</h1>
+
+  <!-- Индикатор загрузки -->
+  <div *ngIf="isLoading" class="alert alert-info">Загрузка данных...</div>
+
+  <!-- Ошибка при загрузке -->
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <!-- Таблица с инцидентами -->
+  <table class="table table-bordered table-striped" *ngIf="!isLoading && incidents.length > 0">
+    <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Ресурс</th>
+      <th>Дата создания</th>
+      <th>Дата инцидента</th>
+      <th>Описание</th>
+      <th>Важность</th>
+      <th>Ответственный</th>
+      <th>Статус</th>
+      <th>Дата закрытия</th>
+      <th>Решение</th>
+      <th>Примечания</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let incident of incidents">
+      <td>{{ incident.id }}</td>
+      <td>{{ incident.resourceUsed }}</td>
+      <td>{{ incident.creatingDateAndTime | date: 'dd-MM-yyyy HH:mm' }}</td>
+      <td>{{ incident.happensDateAndTime | date: 'dd-MM-yyyy HH:mm' }}</td>
+      <td>{{ incident.incidentDescription }}</td>
+      <td>{{ incident.degreeOfImportant }}</td>
+      <td>{{ incident.responsible }}</td>
+      <td>{{ incident.status }}</td>
+      <td>{{ incident.closingDateAndTime ? (incident.closingDateAndTime | date: 'dd-MM-yyyy HH:mm') : 'Не закрыт' }}</td>
+      <td>{{ incident.decision || 'Нет решения' }}</td>
+      <td>{{ incident.note || 'Нет примечаний' }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

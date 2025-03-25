@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Incident } from "../model/incident.model";
+import { IncidentPerformance } from '../model/incident-performance.model'; // Укажите правильный путь!
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class IncidentService {
-  private apiUrl = '/api/incidents';
+  private apiUrl = 'http://localhost:8080/incidents/list'; // Укажите ваш API URL
 
   constructor(private http: HttpClient) {}
 
-  getIncidents(): Observable<Incident[]> {
-    return this.http.get<Incident[]>(this.apiUrl);
-  }
-
-  deleteIncident(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  getIncidents(): Observable<IncidentPerformance[]> {
+    return this.http.get<IncidentPerformance[]>(this.apiUrl);
   }
 }

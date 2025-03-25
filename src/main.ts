@@ -4,3 +4,4 @@ import { AppComponent } from './auth.app/app.component';
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
+

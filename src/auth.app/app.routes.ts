@@ -7,20 +7,30 @@ import {AthPageComponent} from './pages/ath-page/ath-page.component';
 import {AdminLoginPageComponent} from './pages/admin-login-page/admin-login-page.component';
 import {AdminRegisterPageComponent} from './pages/admin-register-page/admin-register-page.component';
 import {canActivateAdmin} from './services/admin.guard';
+import { IncidentListComponent } from '../incident.app/incidents-list/incident-list.component';
 
 export const routes: Routes = [
   {
+    path: 'incidents',
+    component: IncidentListComponent,
+    canActivate: [canActivateAuth]},
+
+  {
     path: 'home', component: HomePageComponent,
     canActivate: [canActivateAuth]},
+
   {
     path: 'register', component: RegisterPageComponent,
   },
+
   {
     path: '', component: AthPageComponent,
   },
+
   {
     path: 'login', component: LoginPageComponent,
   },
+
   {
     path: 'admin-login', component: AdminLoginPageComponent,
   },
@@ -30,3 +40,4 @@ export const routes: Routes = [
     canActivate: [canActivateAdmin]
   }
 ];
+
